@@ -1,3 +1,5 @@
+// jira apiを叩くためのhttp client
+
 package jira
 
 import (

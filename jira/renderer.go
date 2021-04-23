@@ -1,3 +1,5 @@
+// cli上でrenderするfuncを配置
+
 package jira
 
 import (

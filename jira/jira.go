@@ -1,3 +1,5 @@
+// jira api種類別のfuncを配置する。関連helper funcもおいておく。
+
 package jira
 
 import (

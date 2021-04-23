@@ -1,3 +1,5 @@
+// jira apiから渡ってくるjson を parseするために定義する構造体を配置
+
 package jira
 
 type GetIssueParams struct {

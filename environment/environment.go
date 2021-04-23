@@ -1,3 +1,5 @@
+// 実行時の環境変数を管理
+
 package environment
 
 import (

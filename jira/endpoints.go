@@ -1,3 +1,5 @@
+// jira apiのendpoints
+
 package jira
 
 import (

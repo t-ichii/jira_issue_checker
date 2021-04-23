@@ -21,6 +21,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	// NOTE: mode ごとの振り分けはここで実施。modeのfuncは `jira/mode.go` で書くこと。（ここでロジック書かない）
 	if cliOptions.Mode == "rank_checker" {
 		jira.RankChecker(cliOptions.BoardId, cliOptions.SprintId)
 	}
