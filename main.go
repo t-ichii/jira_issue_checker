@@ -22,8 +22,7 @@ func main() {
 	}
 
 	if cliOptions.Mode == "rank_checker" {
-		issues := jira.GetSprintIssues(cliOptions.BoardId, cliOptions.SprintId)
-		jira.RenderLinkIssueTable(issues)
+		jira.RankChecker(cliOptions.BoardId, cliOptions.SprintId)
 	}
 
 	os.Exit(0)
