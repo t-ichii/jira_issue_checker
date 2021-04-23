@@ -14,12 +14,10 @@ type CliOption struct {
 	SprintId int `short:"s" long:"sprint_id" description:"target sprint id(use in rank_checker mode)"`
 }
 
-
 func main() {
 	var cliOptions CliOption
-	_, err := flags.Parse(&cliOptions)
 
-	if err != nil {
+	if _, err := flags.Parse(&cliOptions); err != nil {
 		os.Exit(1)
 	}
 
