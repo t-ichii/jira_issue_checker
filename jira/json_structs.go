@@ -2,18 +2,6 @@
 
 package jira
 
-type GetIssueParams struct {
-	IssueId string
-}
-
-type GetSprintsParams struct {
-	BoardId string
-}
-
-type GetSprintIssuesParams struct {
-	BoardId string
-	SprintId string
-}
 
 type IssueResult struct {
 	Key string `json:"key"`
@@ -65,4 +53,12 @@ type IssueSprint struct {
 
 type SprintIssues struct {
 	Issues []IssueResult `json:"issues"`
+}
+
+type SprintReportResult struct {
+	Contents struct {
+		CompletedIssuesEstimateSum struct {
+			Value string `json:"text"` // TODO: valueから取るようにする
+		} `json:"completedIssuesEstimateSum"`
+	} `json:"contents"`
 }

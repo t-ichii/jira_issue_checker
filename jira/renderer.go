@@ -10,6 +10,15 @@ import (
 	"github.com/thoas/go-funk"
 )
 
+type SprintReportData struct {
+	Id int
+	Name string
+	State string
+	StoryPoints struct{
+		Completed string
+	}
+}
+
 func RenderLinkIssueTable(issues []IssueResult) {
 	table := tablewriter.NewWriter(os.Stdout)
 	table.SetAutoWrapText(false)
@@ -130,5 +139,28 @@ func RenderLinkIssueTable(issues []IssueResult) {
 			outwardIssueStrings,
 		})
 	}
+	table.Render()
+}
+
+func RenderSprintReports(sprints []SprintReportData) {
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetAutoWrapText(false)
+	table.SetColWidth(30)
+	table.SetHeader([]string{
+		"Id",
+		"Name",
+		"State",
+		"Completed",
+	})
+
+	for _, sprint := range sprints {
+		table.Append([]string {
+			strconv.Itoa(sprint.Id),
+			sprint.Name,
+			sprint.State,
+			sprint.StoryPoints.Completed,
+		})
+	}
+
 	table.Render()
 }

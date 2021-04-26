@@ -13,10 +13,12 @@ var EndpointTemplates = struct {
 	GetIssue string
 	GetSprints string
 	GetSprintIssues string
+	GetSprintReport string
 }{
 	GetIssue: "/rest/api/2/issue/{{.IssueId}}",
 	GetSprints: "/rest/agile/1.0/board/{{.BoardId}}/sprint",
 	GetSprintIssues: "/rest/agile/1.0/board/{{.BoardId}}/sprint/{{.SprintId}}/issue",
+	GetSprintReport: "/rest/greenhopper/1.0/rapid/charts/sprintreport?rapidViewId={{.BoardId}}&sprintId={{.SprintId}}",
 }
 
 func buildEndpoint(urlTemplate string, parameters interface{}) string {

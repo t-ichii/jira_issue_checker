@@ -5,6 +5,7 @@ package jira
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/thoas/go-funk"
 	"os"
 	"strconv"
 )
@@ -54,4 +55,22 @@ func GetSprintIssues(boardId int, sprintId int) []IssueResult {
 	}
 
 	return jsonBody.Issues
+}
+
+func GetSprintReport(boardId int, sprintId int) SprintReportResult {
+	var jsonBody SprintReportResult
+
+	parameters := GetSprintReportParams{
+		BoardId: strconv.Itoa(boardId),
+		SprintId: strconv.Itoa(sprintId),
+	}
+
+	resp := httpClient.request("GET", buildEndpoint(EndpointTemplates.GetSprintReport, parameters), nil)
+
+	if err := json.NewDecoder(resp.Body).Decode(&jsonBody); err != nil {
+		fmt.Printf("error %+v\n", err)
+		os.Exit(1)
+	}
+
+	return jsonBody
 }
