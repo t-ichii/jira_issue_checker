@@ -56,7 +56,7 @@ type SprintIssues struct {
 }
 
 type SprintReportIssue struct {
-	Assignee string `json:"assignee"`
+	Assignee string `json:"assigneeName"`
 	Key string `json:"key"`
 	EpicField struct{
 		EpicKey string `json:"epicKey"`
