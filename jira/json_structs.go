@@ -55,10 +55,24 @@ type SprintIssues struct {
 	Issues []IssueResult `json:"issues"`
 }
 
+type SprintReportIssue struct {
+	Assignee string `json:"assignee"`
+	Key string `json:"key"`
+	EpicField struct{
+		EpicKey string `json:"epicKey"`
+		EpicName string `json:"text"`
+	} `json:"epicField"`
+}
+
 type SprintReportResult struct {
 	Contents struct {
 		CompletedIssuesEstimateSum struct {
-			Value string `json:"text"` // TODO: valueから取るようにする
+			Value float64 `json:"value"`
 		} `json:"completedIssuesEstimateSum"`
+		CompletedIssues []SprintReportIssue `json:"completedIssues"`
 	} `json:"contents"`
+	Sprint struct{
+		StartDate string `json:"isoStartDate"`
+		EndDate string `json:"isoEndDate"`
+	} `json:"sprint"`
 }

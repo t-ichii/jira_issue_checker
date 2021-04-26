@@ -5,7 +5,6 @@ package jira
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/thoas/go-funk"
 	"os"
 	"strconv"
 )

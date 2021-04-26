@@ -5,18 +5,35 @@ package jira
 import (
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/thoas/go-funk"
 )
 
-type SprintReportData struct {
+type LinkIssueRenderData struct {
+	Key string
+	IsBlockedBy struct{
+		Issues []IssueLinks
+		ValidRank bool
+
+	}
+	Blocks []IssueLinks
+}
+
+type SprintReportRenderData struct {
 	Id int
 	Name string
 	State string
 	StoryPoints struct{
-		Completed string
+		Completed float64
 	}
+	Date struct{
+		Start string
+		End string
+	}
+	UserNames []string
+	Epics []string
 }
 
 func RenderLinkIssueTable(issues []IssueResult) {
@@ -142,7 +159,7 @@ func RenderLinkIssueTable(issues []IssueResult) {
 	table.Render()
 }
 
-func RenderSprintReports(sprints []SprintReportData) {
+func RenderSprintReports(sprints []SprintReportRenderData) {
 	table := tablewriter.NewWriter(os.Stdout)
 	table.SetAutoWrapText(false)
 	table.SetColWidth(30)
@@ -151,6 +168,10 @@ func RenderSprintReports(sprints []SprintReportData) {
 		"Name",
 		"State",
 		"Completed",
+		"Start Date",
+		"End Date",
+		"Assignee",
+		"Epics",
 	})
 
 	for _, sprint := range sprints {
@@ -158,7 +179,11 @@ func RenderSprintReports(sprints []SprintReportData) {
 			strconv.Itoa(sprint.Id),
 			sprint.Name,
 			sprint.State,
-			sprint.StoryPoints.Completed,
+			strconv.FormatFloat(sprint.StoryPoints.Completed, 'f', 2, 32),
+			sprint.Date.Start,
+			sprint.Date.End,
+			strings.Join(sprint.UserNames, `, `),
+			strings.Join(sprint.Epics, `, `),
 		})
 	}
 
